@@ -15,27 +15,16 @@ import {
 @Injectable()
 export class QuestionsEffects {
 
-  // @Effect()
-  // effect$ = this.actions$.pipe(
-  //   ofType(MoviesActionTypes.FindMovies),
-  //   map( (action: MoviesActions) => action.payload),
-  //   switchMap( query => {
-
-  //     return this.questions
-  //       .findMoviesByTitle(query).pipe(
-  //          map((movies) => new FindMoviesSuccess(movies)),
-  //          catchError(err => of(new FindMoviesError(err)))
-  //       );
-  //   })
-  // );
-
   @Effect()
   effect$ = this.actions$.pipe(
     ofType(QuestionQueueActionTypes.AddQuestionToQueue),
-    map( (action: QuestionQueueActions) => action.payload),
+    map( (action: QuestionQueueActions) => {
+      console.log(action.payload);
+      return action.payload;
+    }),
     switchMap( query => {
-
-      return this.questions.getQuestions().pipe(
+      console.log('query', query);
+      return this.questions.getQuestions(query).pipe(
         map((questions) => new AddQuestionToQueueSuccess(questions)),
         catchError(err => of(new AddQuestionToQueueError(err)))
       );

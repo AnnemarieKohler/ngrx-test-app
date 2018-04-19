@@ -8,7 +8,7 @@ export class QuestionsService {
 
   constructor(private http: HttpClient) {}
 
-  public getQuestions(): Observable<any> {
+  public getQuestions(level): Observable<any> {
     return this.http.get(`http://localhost:4200/assets/questions.json`);
   }
 }
