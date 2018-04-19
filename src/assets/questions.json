@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "id": "0001",
+      "text": "Wie viele deutsche Bundesländer gibt es?",
+      "answerOptions": [
+        {
+          "id": "01",
+          "text": "4"
+        },
+        {
+          "id": "02",
+          "text": "41"
+        },
+        {
+          "id": "03",
+          "text": "16"
+        }
+      ],
+      "correctAnswers": ["03"],
+      "level": "easy"
+    },
+    {
+      "id": "0002",
+      "text": "Welche Farben hat die englische Flagge?",
+      "answerOptions": [
+        {
+          "id": "01",
+          "text": "rot, orange, weiß"
+        },
+        {
+          "id": "02",
+          "text": "rot, weiß"
+        },
+        {
+          "id": "03",
+          "text": "gelb, blau, rot"
+        }
+      ],
+      "correctAnswers": ["02"],
+      "level": "easy"
+    },
+    {
+      "id": "0001",
+      "text": "Welche Farben hat die britische Flagge",
+      "answerOptions": [
+        {
+          "id": "01",
+          "text": "rot, orange, weiß"
+        },
+        {
+          "id": "02",
+          "text": "rot, weiß, blau"
+        },
+        {
+          "id": "03",
+          "text": "gelb, blau, rot"
+        }
+      ],
+      "correctAnswers": ["02"],
+      "level": "easy"
+    }
+  ]
+}
