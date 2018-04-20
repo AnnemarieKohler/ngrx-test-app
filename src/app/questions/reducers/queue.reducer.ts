@@ -9,7 +9,7 @@ export function queueReducer(state = initialState, action: QuestionQueueActions)
 
   switch (action.type) {
 
-    case QuestionQueueActionTypes.AddQuestionToQueue:
+    case QuestionQueueActionTypes.InitialiseQueue:
       return action.payload as Question[];
 
     default:

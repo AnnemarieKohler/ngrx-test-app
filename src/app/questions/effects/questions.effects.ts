@@ -9,7 +9,9 @@ import {
   QuestionQueueActions,
   AddQuestionToQueue,
   AddQuestionToQueueSuccess,
-  AddQuestionToQueueError
+  AddQuestionToQueueError,
+  InitialiseQueueError,
+  InitialiseQueueSuccess
 } from '../actions/question-queue.actions';
 
 @Injectable()
@@ -17,7 +19,7 @@ export class QuestionsEffects {
 
   @Effect()
   effect$ = this.actions$.pipe(
-    ofType(QuestionQueueActionTypes.AddQuestionToQueue),
+    ofType(QuestionQueueActionTypes.InitialiseQueue),
     map( (action: QuestionQueueActions) => {
       console.log(action.payload);
       return action.payload;
@@ -25,8 +27,8 @@ export class QuestionsEffects {
     switchMap( query => {
       console.log('query', query);
       return this.questions.getQuestions(query).pipe(
-        map((questions) => new AddQuestionToQueueSuccess(questions)),
-        catchError(err => of(new AddQuestionToQueueError(err)))
+        map((questions) => new InitialiseQueueSuccess(questions.json())),
+        catchError(err => of(new InitialiseQueueError(err)))
       );
     })
   );

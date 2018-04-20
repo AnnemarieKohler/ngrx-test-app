@@ -1,14 +1,38 @@
 import {Action} from '@ngrx/store';
 
 export enum QuestionQueueActionTypes {
-  AddQuestionToQueue = '[Question Queue] Add ',
-  RemoveQuestionFromQueue = '[Question Queue] Remove ',
-  AddQuestionToQueueError = '[Question Queue] Add Error',
-  AddQuestionToQueueSuccess = '[Question Queue] Add Success',
+  InitialiseQueue = '[Question Queue] Initialise Queue',
+  InitialiseQueueSuccess = '[Question Queue] Initialise Queue Success',
+  InitialiseQueueError = '[Question Queue] Initialise Queue Error',
+  AddQuestionToQueue = '[Question Queue] Add Question',
+  RemoveQuestionFromQueue = '[Question Queue] Remove Question',
+  AddQuestionToQueueError = '[Question Queue] Add Question Error',
+  AddQuestionToQueueSuccess = '[Question Queue] Add Question Success',
 }
 
 export interface QuestionQueueAction extends Action {
   payload?: any;
+}
+
+export class InitialiseQueue implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.InitialiseQueue;
+
+  constructor(public payload: any) {
+  }
+}
+
+export class InitialiseQueueSuccess implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.InitialiseQueueSuccess;
+
+  constructor(public payload: any) {
+  }
+}
+
+export class InitialiseQueueError implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.InitialiseQueueError;
+
+  constructor(public payload: any) {
+  }
 }
 
 export class AddQuestionToQueue implements QuestionQueueAction {
@@ -39,4 +63,11 @@ export class RemoveQuestionFromQueue implements QuestionQueueAction {
   }
 }
 
-export type QuestionQueueActions = AddQuestionToQueue | RemoveQuestionFromQueue;
+export type QuestionQueueActions = AddQuestionToQueue
+                                  | AddQuestionToQueueError
+                                  | AddQuestionToQueueSuccess
+                                  | RemoveQuestionFromQueue
+                                  | InitialiseQueue
+                                  | InitialiseQueueSuccess
+                                  | InitialiseQueueError
+                                  ;
