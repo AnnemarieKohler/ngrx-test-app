@@ -10,7 +10,7 @@ export const reducers: ActionReducerMap<State> = {
     questionQueue: queueReducer
 };
 
-const getQuestions = createFeatureSelector<State>('questions');
+const getQuestions = createFeatureSelector<State>('test');
 
 export const getQuestionQueue = createSelector(
   getQuestions,

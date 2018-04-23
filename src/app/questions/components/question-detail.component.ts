@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AddQuestionToQueue, InitialiseQueue } from '../actions/question-queue.actions';
 import { Observable } from 'rxjs';
 import * as fromQuestions from '../reducers/questions.reducer';
+import { Question } from '../models/question';
 
 @Component({
   selector: 'question-detail',
@@ -12,26 +13,28 @@ import * as fromQuestions from '../reducers/questions.reducer';
     <p>
       question works!
     </p>
-
-    <ul *ngFor="let question of questions">
-      <li>{{ question }}</li>
+    <button class="btn btn-primary" (click)="selectLevel()">easy</button>
+    <br><br>
+    <button class="btn btn-info" (click)="startTest()">start test</button>
+    <ul *ngFor="let question of questions$ | async">
+      <li>{{ question.text }}</li>
     </ul>
   `,
   styles: []
 })
 export class QuestionDetailComponent implements OnInit {
-  questions: Observable<any>;
+  questions$: Observable<Question[]>;
 
   constructor(private store: Store<fromRoot.State>, public router: Router) {}
 
-  ngOnInit() {
-    this.counter = store.select('counter');
+  ngOnInit() {}
+
+  selectLevel() {
     this.store.dispatch(new InitialiseQueue('easy'));
-    this.questions$ = this.store.pipe(select(fromQuestions.getQuestionQueue));
   }
 
-  selectLevel(){
-    this.store.dispatch(new InitialiseQueue('easy'));
+  startTest() {
+    this.questions$ = this.store.select(fromQuestions.getQuestionQueue);
   }
 
 }

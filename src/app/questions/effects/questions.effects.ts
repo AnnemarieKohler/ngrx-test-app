@@ -13,26 +13,25 @@ import {
   InitialiseQueueError,
   InitialiseQueueSuccess
 } from '../actions/question-queue.actions';
+import { LevelActionTypes, LevelActions, InitialiseLevel } from '../actions/level.actions';
 
 @Injectable()
 export class QuestionsEffects {
 
+  constructor(
+    private actions$: Actions,
+    private questionsService: QuestionsService,
+    private router: Router) {}
+
   @Effect()
-  effect$ = this.actions$.pipe(
+  initialiseQueue$ = this.actions$.pipe(
     ofType(QuestionQueueActionTypes.InitialiseQueue),
-    map( (action: QuestionQueueActions) => {
-      console.log(action.payload);
-      return action.payload;
-    }),
-    switchMap( query => {
-      console.log('query', query);
-      return this.questions.getQuestions(query).pipe(
-        map((questions) => new InitialiseQueueSuccess(questions.json())),
+    map( (action: QuestionQueueActions) => action.payload),
+    switchMap( (query: string) => {
+      return this.questionsService.getQuestions(query).pipe(
+        map((data) =>  new InitialiseQueueSuccess(data.questions),
         catchError(err => of(new InitialiseQueueError(err)))
-      );
+      ));
     })
   );
-
-  constructor(private actions$: Actions, private questions: QuestionsService, private router: Router) {
-  }
 }

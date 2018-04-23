@@ -19,7 +19,7 @@ import { QuestionsComponent } from './containers/questions.component';
     RouterModule.forChild([
       { path: '', component: QuestionDetailComponent},
     ]),
-    StoreModule.forFeature('questions', fromQuestions.reducers),
+    StoreModule.forFeature('test', fromQuestions.reducers),
     EffectsModule.forFeature([QuestionsEffects])
   ],
   providers: [QuestionsService],

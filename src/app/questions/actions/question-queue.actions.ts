@@ -63,11 +63,5 @@ export class RemoveQuestionFromQueue implements QuestionQueueAction {
   }
 }
 
-export type QuestionQueueActions = AddQuestionToQueue
-                                  | AddQuestionToQueueError
-                                  | AddQuestionToQueueSuccess
-                                  | RemoveQuestionFromQueue
-                                  | InitialiseQueue
-                                  | InitialiseQueueSuccess
-                                  | InitialiseQueueError
-                                  ;
+export type QuestionQueueActions = AddQuestionToQueue | AddQuestionToQueueError | AddQuestionToQueueSuccess |
+ RemoveQuestionFromQueue | InitialiseQueue | InitialiseQueueSuccess | InitialiseQueueError;
