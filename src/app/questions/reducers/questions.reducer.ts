@@ -16,3 +16,8 @@ export const getQuestionQueue = createSelector(
   getQuestions,
   questions => questions.questionQueue
   );
+
+export const getCurrentQuestion = createSelector(
+  getQuestions,
+  questions => questions.questionQueue[0]
+  );

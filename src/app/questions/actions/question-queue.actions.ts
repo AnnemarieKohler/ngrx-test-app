@@ -8,6 +8,7 @@ export enum QuestionQueueActionTypes {
   RemoveQuestionFromQueue = '[Question Queue] Remove Question',
   AddQuestionToQueueError = '[Question Queue] Add Question Error',
   AddQuestionToQueueSuccess = '[Question Queue] Add Question Success',
+  GetCurrentQuestion = '[Question Queue] Get Current Question',
 }
 
 export interface QuestionQueueAction extends Action {
@@ -33,6 +34,10 @@ export class InitialiseQueueError implements QuestionQueueAction {
 
   constructor(public payload: any) {
   }
+}
+
+export class GetCurrentQuestion implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.GetCurrentQuestion;
 }
 
 export class AddQuestionToQueue implements QuestionQueueAction {
@@ -64,4 +69,4 @@ export class RemoveQuestionFromQueue implements QuestionQueueAction {
 }
 
 export type QuestionQueueActions = AddQuestionToQueue | AddQuestionToQueueError | AddQuestionToQueueSuccess |
- RemoveQuestionFromQueue | InitialiseQueue | InitialiseQueueSuccess | InitialiseQueueError;
+  RemoveQuestionFromQueue | InitialiseQueue | InitialiseQueueSuccess | InitialiseQueueError | GetCurrentQuestion;

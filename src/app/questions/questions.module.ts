@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuestionDetailComponent } from './components/question-detail.component';
 import { QuestionsService } from '../questions/services/questions.service';
 import { QuestionsComponent } from './containers/questions.component';
+import { SelectLevelComponent } from './components/select-level.component';
 
 @NgModule({
   imports: [
@@ -17,13 +18,13 @@ import { QuestionsComponent } from './containers/questions.component';
     HttpClientModule,
     CoreModule,
     RouterModule.forChild([
-      { path: '', component: QuestionDetailComponent},
+      { path: '', component: QuestionsComponent},
     ]),
     StoreModule.forFeature('test', fromQuestions.reducers),
     EffectsModule.forFeature([QuestionsEffects])
   ],
   providers: [QuestionsService],
-  declarations: [QuestionsComponent, QuestionDetailComponent],
+  declarations: [QuestionsComponent, QuestionDetailComponent, SelectLevelComponent],
   exports: [QuestionsComponent]
 })
 export class QuestionsModule { }

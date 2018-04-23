@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { Router } from '@angular/router';
@@ -10,31 +10,34 @@ import { Question } from '../models/question';
 @Component({
   selector: 'question-detail',
   template: `
-    <p>
-      question works!
-    </p>
-    <button class="btn btn-primary" (click)="selectLevel()">easy</button>
-    <br><br>
-    <button class="btn btn-info" (click)="startTest()">start test</button>
-    <ul *ngFor="let question of questions$ | async">
-      <li>{{ question.text }}</li>
-    </ul>
+    <div>
+      <!-- <ul *ngFor="let question of questions$ | async">
+        <li>{{ question.text }}</li>
+      </ul> -->
+      <h3>{{ question.text }}</h3>
+      <ul *ngFor="let answer of question.answerOptions" class="list-group">
+        <li class="list-group-item">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="{{answer.id}}" [(ngModel)]="answer.id">
+            <label class="form-check-label" for="exampleCheck1">{{ answer.text }}</label>
+          </div>
+        </li>
+      </ul>
+      <button (click)="submit()">Submit & Next</button>
+    </div>
   `,
   styles: []
 })
 export class QuestionDetailComponent implements OnInit {
+  @Input() question: Question;
   questions$: Observable<Question[]>;
 
   constructor(private store: Store<fromRoot.State>, public router: Router) {}
 
   ngOnInit() {}
 
-  selectLevel() {
-    this.store.dispatch(new InitialiseQueue('easy'));
-  }
+  submit() {
 
-  startTest() {
-    this.questions$ = this.store.select(fromQuestions.getQuestionQueue);
   }
 
 }
