@@ -13,6 +13,7 @@ import { QuestionDetailComponent } from './components/question-detail.component'
 import { QuestionsService } from '../questions/services/questions.service';
 import { QuestionsComponent } from './containers/questions.component';
 import { SelectLevelComponent } from './components/select-level.component';
+import { QuestionsFinishedComponent } from './components/questions-finished.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,7 @@ import { SelectLevelComponent } from './components/select-level.component';
     ReactiveFormsModule
   ],
   providers: [QuestionsService],
-  declarations: [QuestionsComponent, QuestionDetailComponent, SelectLevelComponent],
+  declarations: [QuestionsComponent, QuestionDetailComponent, SelectLevelComponent, QuestionsFinishedComponent],
   exports: [QuestionsComponent]
 })
 export class QuestionsModule { }

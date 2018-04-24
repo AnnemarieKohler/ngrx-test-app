@@ -21,3 +21,8 @@ export const getCurrentQuestion = createSelector(
   getQuestions,
   questions => questions.questionQueue[0]
   );
+
+export const getIsQuestionQueueFinished = createSelector(
+  getQuestions,
+  questions => questions.questionQueue.length === 0
+  );
