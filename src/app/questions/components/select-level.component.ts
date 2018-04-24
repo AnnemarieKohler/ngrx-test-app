@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { Router } from '@angular/router';
@@ -11,18 +11,19 @@ import { Question } from '../models/question';
   selector: 'select-level',
   template: `
     <h2>Choose your difficulty level</h2>
-    <button class="btn btn-success" (click)="selectLevel()">easy</button>
-    <button class="btn btn-warning" (click)="selectLevel()">hard</button>
+    <button class="btn btn-success" (click)="select('easy')">easy</button>
+    <button class="btn btn-warning" (click)="select('hard')">hard</button>
   `,
   styles: []
 })
 export class SelectLevelComponent implements OnInit {
-  constructor(private store: Store<fromRoot.State>, public router: Router) { }
+  @Output() onLevelSelected = new EventEmitter<any>();
+
+  constructor() { }
 
   ngOnInit() { }
 
-  selectLevel() {
-    this.store.dispatch(new InitialiseQueue('easy'));
+  select(level) {
+    this.onLevelSelected.emit(level);
   }
-
 }

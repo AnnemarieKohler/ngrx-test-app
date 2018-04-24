@@ -6,16 +6,16 @@ import * as fromRoot from '../../reducers';
 import * as fromQuestions from '../reducers/questions.reducer';
 import { Observable } from 'rxjs';
 import { Question } from '../models/question';
-import { GetCurrentQuestion, AnswerCurrentQuestion } from '../actions/question-queue.actions';
+import { GetCurrentQuestion, AnswerCurrentQuestion, InitialiseQueue } from '../actions/question-queue.actions';
 
 @Component({
   selector: 'questions',
   template: `
     <h1>My test</h1>
     <div *ngIf="!showTest && !showFinished">
-      <select-level></select-level>
+      <select-level (onLevelSelected)="onLevelSelected($event)"></select-level>
       <hr>
-      <button class="btn btn-info" (click)="startTest()">start test</button>
+      <button class="btn btn-info" (click)="startTest()" [disabled]="!canStartTest">start test</button>
     </div>
     <hr>
     <question-detail *ngIf="showTest" [question]="question$ | async" (onSubmitted)="onSubmitted($event)"></question-detail>
@@ -24,18 +24,25 @@ import { GetCurrentQuestion, AnswerCurrentQuestion } from '../actions/question-q
   styles: []
 })
 export class QuestionsComponent implements OnInit {
-  question$: Observable<Question>;
+  question$: Observable<any>;
   showTest: boolean;
   showFinished: boolean;
+  canStartTest: boolean;
 
   constructor(private store: Store<fromRoot.State>) { }
 
   ngOnInit() {}
 
   startTest() {
+    if (!this.canStartTest) return;
     this.showTest = true;
     this.store.dispatch(new GetCurrentQuestion());
     this.question$ = this.store.select(fromQuestions.getCurrentQuestion);
+  }
+
+  onLevelSelected(level) {
+    this.store.dispatch(new InitialiseQueue(level));
+    this.canStartTest = true;
   }
 
   onSubmitted(answerId) {
