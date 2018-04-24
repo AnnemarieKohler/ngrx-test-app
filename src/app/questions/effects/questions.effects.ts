@@ -13,7 +13,6 @@ import {
   InitialiseQueueError,
   InitialiseQueueSuccess
 } from '../actions/question-queue.actions';
-import { LevelActionTypes, LevelActions, InitialiseLevel } from '../actions/level.actions';
 
 @Injectable()
 export class QuestionsEffects {
