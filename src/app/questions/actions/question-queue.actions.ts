@@ -2,13 +2,9 @@ import {Action} from '@ngrx/store';
 
 export enum QuestionQueueActionTypes {
   InitialiseQueue = '[Question Queue] Initialise Queue',
-  InitialiseQueueSuccess = '[Question Queue] Initialise Queue Success',
-  InitialiseQueueError = '[Question Queue] Initialise Queue Error',
-  AddQuestionToQueue = '[Question Queue] Add Question',
-  RemoveQuestionFromQueue = '[Question Queue] Remove Question',
-  AddQuestionToQueueError = '[Question Queue] Add Question Error',
-  AddQuestionToQueueSuccess = '[Question Queue] Add Question Success',
-  GetCurrentQuestion = '[Question Queue] Get Current Question',
+  InitialisedQueueSuccess = '[Question Queue] Initialised Queue Success',
+  InitialisedQueueError = '[Question Queue] Initialised Queue Error',
+  UpdateCurrentScreen = '[Question Queue] Update Current Screen',
   AnswerCurrentQuestion = '[Question Queue] Answer Current Question'
 }
 
@@ -23,24 +19,18 @@ export class InitialiseQueue implements QuestionQueueAction {
   }
 }
 
-export class InitialiseQueueSuccess implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.InitialiseQueueSuccess;
+export class InitialisedQueueSuccess implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.InitialisedQueueSuccess;
 
   constructor(public payload: any) {
   }
 }
 
-export class InitialiseQueueError implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.InitialiseQueueError;
+export class InitialisedQueueError implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.InitialisedQueueError;
 
   constructor(public payload: any) {
   }
-}
-
-export class GetCurrentQuestion implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.GetCurrentQuestion;
-
-  constructor(public payload?: any) {}
 }
 
 export class AnswerCurrentQuestion implements QuestionQueueAction {
@@ -49,33 +39,13 @@ export class AnswerCurrentQuestion implements QuestionQueueAction {
   constructor(public payload: any) {}
 }
 
-export class AddQuestionToQueue implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.AddQuestionToQueue;
+export class UpdateCurrentScreen implements QuestionQueueAction {
+  readonly type = QuestionQueueActionTypes.UpdateCurrentScreen;
 
   constructor(public payload: any) {
   }
 }
 
-export class AddQuestionToQueueSuccess implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.AddQuestionToQueueError;
 
-  constructor(public payload: any) {
-  }
-}
-
-export class AddQuestionToQueueError implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.AddQuestionToQueueError;
-
-  constructor(public payload: any) {
-  }
-}
-
-export class RemoveQuestionFromQueue implements QuestionQueueAction {
-  readonly type = QuestionQueueActionTypes.RemoveQuestionFromQueue;
-
-  constructor(public payload: any) {
-  }
-}
-
-export type QuestionQueueActions = AddQuestionToQueue | AddQuestionToQueueError | AddQuestionToQueueSuccess |
-  RemoveQuestionFromQueue | InitialiseQueue | InitialiseQueueSuccess | InitialiseQueueError | GetCurrentQuestion | AnswerCurrentQuestion;
+export type QuestionQueueActions = InitialiseQueue | InitialisedQueueSuccess |
+  InitialisedQueueError | AnswerCurrentQuestion | UpdateCurrentScreen;

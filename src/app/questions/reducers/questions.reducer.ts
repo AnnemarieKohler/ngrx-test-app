@@ -3,7 +3,10 @@ import {Question} from '../models/question';
 import {queueReducer} from './queue.reducer';
 
 export interface State {
-  questionQueue: Question[];
+  questionQueue: {
+    questions: Question[],
+    currentScreen: string
+  };
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -14,15 +17,20 @@ const getQuestions = createFeatureSelector<State>('test');
 
 export const getQuestionQueue = createSelector(
   getQuestions,
-  questions => questions.questionQueue
+  test => test.questionQueue
   );
 
 export const getCurrentQuestion = createSelector(
   getQuestions,
-  questions => questions.questionQueue[0]
+  test => test.questionQueue.questions[0]
   );
 
 export const getIsQuestionQueueFinished = createSelector(
   getQuestions,
-  questions => questions.questionQueue.length === 0
+  test => test.questionQueue.questions.length === 0
+  );
+
+export const getCurrentScreen = createSelector(
+  getQuestions,
+  test => test.questionQueue.currentScreen
   );
