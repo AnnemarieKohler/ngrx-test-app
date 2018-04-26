@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import { Router } from '@angular/router';
-import { AddQuestionToQueue, InitialiseQueue } from '../actions/question-queue.actions';
+import { InitialiseQueue } from '../actions/question-queue.actions';
 import { Observable } from 'rxjs';
 import * as fromQuestions from '../reducers/questions.reducer';
 import { Question } from '../models/question';

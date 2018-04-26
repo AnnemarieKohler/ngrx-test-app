@@ -7,11 +7,11 @@ import { QuestionsService } from '../services/questions.service';
 import {
   QuestionQueueActionTypes,
   QuestionQueueActions,
-  AddQuestionToQueue,
-  AddQuestionToQueueSuccess,
-  AddQuestionToQueueError,
-  InitialiseQueueError,
-  InitialiseQueueSuccess
+  // AddQuestionToQueue,
+  // AddQuestionToQueueSuccess,
+  // AddQuestionToQueueError,
+  InitialisedQueueError,
+  InitialisedQueueSuccess
 } from '../actions/question-queue.actions';
 
 @Injectable()
@@ -28,8 +28,8 @@ export class QuestionsEffects {
     map( (action: QuestionQueueActions) => action.payload),
     switchMap( (query: string) => {
       return this.questionsService.getQuestions(query).pipe(
-        map((data) =>  new InitialiseQueueSuccess(data.questions),
-        catchError(err => of(new InitialiseQueueError(err)))
+        map((data) =>  new InitialisedQueueSuccess(data.questions),
+        catchError(err => of(new InitialisedQueueError(err)))
       ));
     })
   );
