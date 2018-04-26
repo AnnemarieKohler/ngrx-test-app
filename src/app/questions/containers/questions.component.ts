@@ -26,7 +26,8 @@ import { AnswerCurrentQuestion, InitialiseQueue, UpdateCurrentScreen } from '../
 })
 export class QuestionsComponent implements OnInit {
   question$: Observable<any>;
-  currentScreen;
+  currentScreen: string;
+  canStartTest: boolean;
 
   constructor(private store: Store<fromRoot.State>) { }
 
@@ -39,6 +40,7 @@ export class QuestionsComponent implements OnInit {
 
   onLevelSelected(level) {
     this.store.dispatch(new InitialiseQueue(level));
+    this.canStartTest = true;
   }
 
   startTest() {
