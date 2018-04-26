@@ -33,7 +33,7 @@ import { Question } from '../models/question';
 export class QuestionDetailComponent implements OnInit {
   @Input() question: Question;
   @Output() onSubmitted = new EventEmitter<any>();
-  selectedAnswer: string;
+  selectedAnswers: string[];
 
 
   constructor(private store: Store<fromRoot.State>, public router: Router) {}
@@ -43,11 +43,11 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   select(answer) {
-    this.selectedAnswer = answer;
+    this.selectedAnswers = [answer];
   }
 
   submit() {
-    this.onSubmitted.emit(this.selectedAnswer);
+    this.onSubmitted.emit(this.selectedAnswers);
   }
 
 }
